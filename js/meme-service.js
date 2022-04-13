@@ -15,14 +15,14 @@ function createMeme(txt, size = '14px', align = 'center', color = 'black', font 
     return gMeme
 }
 
-function printMemes(){
+function printMemes() {
     gMeme.forEach(meme => {
         if (!meme.idx) {
             let x = gElCanvas.width / 2 - 25
             let y = 50;
             drawText(meme.txt, x, y)
-        } else if(meme.idx === 1){
-            let x = gElCanvas.width / 2 -25
+        } else if (meme.idx === 1) {
+            let x = gElCanvas.width / 2 - 25
             let y = gElCanvas.height - 50
             drawText(meme.txt, x, y)
         } else {
@@ -35,19 +35,20 @@ function printMemes(){
 function renderMeme() {
     let text = document.getElementById('meme-text')
     console.log(gMeme)
-    if(!gMeme.length) createMeme(text.value)
+    if (!gMeme.length) createMeme(text.value)
     let currMeme = gMeme[gClicks]
     currMeme.txt = text.value
     clearCanvas()
     renderImg(gCurrImg)
     printMemes()
-   
-   
+
+
 }
 
-function editText(){
+function editText() {
     let text = document.getElementById('meme-text')
-    if(gClicks) gClicks--
+    if (!gClicks) gClicks = gMeme.length - 1
+    else gClicks--
     text.value = ''
     // gMeme[gClicks].txt = text.value
     // clearCanvas()
@@ -58,9 +59,9 @@ function editText(){
 
 function addLine() {
     let text = document.getElementById('meme-text')
-    if(!text.value) return
+    if (!text.value) return
     gClicks++
-     text.value = ''
+    text.value = ''
     createMeme(text.value)
     console.log(gMeme)
 }

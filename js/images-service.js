@@ -14,7 +14,7 @@ function renderImagesByKeywords(){
     let strHTML = ''
     images.forEach(image =>{ 
         if(image.keyWords.includes(`${keyWord}`)){
-            strHTML +=  `<div class="image"><img onclick="onClickImage(this)" id='img-${image.id}' src="/images/meme-imgs (square)/${image.url}"></img></div>`
+            strHTML +=  `<div class="image"><img onclick="onClickImage(this)" id='img-${image.id}' src="../images/meme-imgs (square)/${image.url}"></img></div>`
         } 
         let imageHolder = document.querySelector('.gallery')
         imageHolder.innerHTML = strHTML
