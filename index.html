@@ -26,12 +26,13 @@
         <canvas id="my-canvas" height="500" width="500"></canvas>
     </div>
     <div class="meme-controls flex-col">
-        <form onsubmit="renderMeme()">
+        <form oninput="renderMeme()">
             <input type="text" id="meme-text" placeholder="enter memeness" autocomplete="off">
         </form>
         <div class="buttons">
             <button onclick="textUp()" class="arrow up-arrow">↑</button>
-            <button onclick="textDown()" class="arrow down-arrow">↓</button>
+            <button onclick="addLine()" class="arrow down-arrow">+</button>
+            <button onclick="editText()">↑↓</button>
         </div>
     </div>
 </section>

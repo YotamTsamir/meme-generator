@@ -19,19 +19,23 @@ function drawImgFromlocal(source) {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height) //img,x,y,xend,yend
     }
 }
-function toggleCanvasSeen(){
+function toggleCanvasSeen() {
     let memeScreen = document.querySelector('.create-meme')
     memeScreen.classList.toggle('hidden')
 }
-function returnToGallery(){
+function returnToGallery() {
     let gallery = document.querySelector('.gallery')
-    if(gallery.classList.contains('hidden')){
+    let text = document.getElementById('meme-text')
+    text.value = ''
+    gMeme = [];
+    gClicks = 0;
+    if (gallery.classList.contains('hidden')) {
         toggleCanvasSeen()
         toggleGalleryHidden()
         renderImages()
     } else renderImages()
 }
-function onClickImg(source){
+function onClickImg(source) {
     toggleGalleryHidden()
     toggleCanvasSeen()
     renderImg(source)

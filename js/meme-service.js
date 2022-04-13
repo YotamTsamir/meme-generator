@@ -2,58 +2,74 @@
 let gYposition = 50;
 let gXposition;
 let gClicks = 0
-let gMeme =[]
+let gMeme = []
 function createMeme(txt, size = '14px', align = 'center', color = 'black', font = 'impact') {
     gMeme.push({
-        idx:gClicks,
+        idx: gClicks,
         txt,
         size,
         align,
         color,
-        font
+        font,
     })
-    //  {
-        // lines: [
-            // {
-            //     txt,
-            //     size,
-            //     align,
-            //     color,
-            //     font
-            // }
-        // ]
-    // }
-        // ]
-    return gMeme
-}
-function editMeme(txt, fontSize, color) {
-    gMeme = createMeme()
-    gMeme[gClicks].txt = txt
     return gMeme
 }
 
+function printMemes(){
+    gMeme.forEach(meme => {
+        if (!meme.idx) {
+            let x = gElCanvas.width / 2 - 25
+            let y = 50;
+            drawText(meme.txt, x, y)
+        } else if(meme.idx === 1){
+            let x = gElCanvas.width / 2 -25
+            let y = gElCanvas.height - 50
+            drawText(meme.txt, x, y)
+        } else {
+            let x = gElCanvas.width / 2 - 25
+            let y = gElCanvas.height / 2
+            drawText(meme.txt, x, y)
+        }
+    })
+}
 function renderMeme() {
     let text = document.getElementById('meme-text')
-    console.log(gClicks)
-    clearCanvas()
-    let currMeme = editMeme(text.value)
-    renderImg(gCurrImg)
-    currMeme.forEach(meme =>drawText(meme.txt,gElCanvas.width/2,50*meme.idx+gYposition) )
-    // drawText(currMeme[0].txt, gElCanvas.width / 2, gYposition)
-    text.value = ''
     console.log(gMeme)
-    gClicks++
-    gYposition = 50
+    if(!gMeme.length) createMeme(text.value)
+    let currMeme = gMeme[gClicks]
+    currMeme.txt = text.value
+    clearCanvas()
+    renderImg(gCurrImg)
+    printMemes()
+   
+   
 }
-function textDown(){
-    gYposition += 150
+
+function editText(){
+    let text = document.getElementById('meme-text')
+    if(gClicks) gClicks--
+    text.value = ''
+    // gMeme[gClicks].txt = text.value
+    // clearCanvas()
+    // renderImg(gCurrImg)
+    // printMemes()
+}
+
+
+function addLine() {
+    let text = document.getElementById('meme-text')
+    if(!text.value) return
+    gClicks++
+     text.value = ''
+    createMeme(text.value)
+    console.log(gMeme)
 }
 function clearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 
 }
 
-function drawText(txt, x, y,align,font) {
+function drawText(txt, x, y, align, font) {
     gCtx.textAlign = align;
     gCtx.lineWidth = 2;
     gCtx.fillStyle = 'white';
