@@ -1,0 +1,13 @@
+@media (max-width: 700px){
+   .create-meme{
+       flex-direction: column;
+   }
+   canvas{
+       width: 400px;
+       height: 400px;
+   }
+   .meme-controls{
+       width: 400px;
+       height: 400px;
+   }
+}
