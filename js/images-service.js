@@ -3,7 +3,7 @@ renderImages()
 function renderImages(){
     let images = getImages()
     let strHTML = ''
-    images.forEach(image => strHTML +=  `<div  class="image"><img onclick="onClickImg(this)" id='img-${image.id}' src="../images/meme-imgs/${image.url}"></img></div>`)
+    images.forEach(image => strHTML +=  `<div  class="image"><img onclick="onClickImg(this)" id='img-${image.id}' src="../images/${image.url}"></img></div>`)
     let imageHolder = document.querySelector('.gallery')
     imageHolder.innerHTML = strHTML
 }
@@ -14,7 +14,7 @@ function renderImagesByKeywords(){
     let strHTML = ''
     images.forEach(image =>{ 
         if(image.keyWords.includes(`${keyWord}`)){
-            strHTML +=  `<div class="image"><img onclick="onClickImage(this)" id='img-${image.id}' src="../images/meme-imgs/${image.url}"></img></div>`
+            strHTML +=  `<div class="image"><img onclick="onClickImage(this)" id='img-${image.id}' src="../images/${image.url}"></img></div>`
         } 
         let imageHolder = document.querySelector('.gallery')
         imageHolder.innerHTML = strHTML
