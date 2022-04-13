@@ -37,7 +37,6 @@ function renderMeme() {
     let text = document.getElementById('meme-text')
     console.log(gMeme)
     if (!gMeme.length) createMeme(text.value)
-
     let currMeme = gMeme[gClicks]
     currMeme.txt = text.value
     clearCanvas()
@@ -49,20 +48,22 @@ function renderMeme() {
 
 function editText() {
     let text = document.getElementById('meme-text')
-    if (!gClicks) gClicks = gMeme.length - 1
-    else gClicks--
-    text.value = ''
-    // gMeme[gClicks].txt = text.value
-    // clearCanvas()
-    // renderImg(gCurrImg)
-    // printMemes()
+    if (!gClicks){ 
+        gClicks = gMeme.length - 1
+        text.value = gMeme[gClicks].txt}
+    else {
+        gClicks--
+        text.value = gMeme[gClicks].txt}
+    
+   
 }
 
 
 function addLine() {
     let text = document.getElementById('meme-text')
     if (!text.value) return
-    gClicks++
+    if(gMeme[gClicks]) gClicks = gMeme.length
+    else gClicks++
     text.value = ''
     createMeme(text.value)
     console.log(gMeme)
