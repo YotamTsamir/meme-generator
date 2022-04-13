@@ -1,0 +1,11 @@
+#meme-text{
+    margin: 15px;
+    height: 1.5rem;
+    width: 18rem;
+}
+.meme-controls{
+    background-color: rgb(213, 213, 213);
+    height: 500px;
+    width: 500px;
+    align-items: center;
+}
