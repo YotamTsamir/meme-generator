@@ -3,6 +3,7 @@ let gYposition = 50;
 let gXposition;
 let gClicks = 0
 let gMeme = []
+console.log('asd')
 function createMeme(txt, size = '14px', align = 'center', color = 'black', font = 'impact') {
     gMeme.push({
         idx: gClicks,
@@ -36,7 +37,7 @@ function renderMeme() {
     let text = document.getElementById('meme-text')
     console.log(gMeme)
     if (!gMeme.length) createMeme(text.value)
-    
+
     let currMeme = gMeme[gClicks]
     currMeme.txt = text.value
     clearCanvas()
