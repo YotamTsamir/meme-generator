@@ -36,6 +36,7 @@ function renderMeme() {
     let text = document.getElementById('meme-text')
     console.log(gMeme)
     if (!gMeme.length) createMeme(text.value)
+    
     let currMeme = gMeme[gClicks]
     currMeme.txt = text.value
     clearCanvas()
