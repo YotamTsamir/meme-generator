@@ -11,13 +11,17 @@
 </head>
 
 <body>
+    <!-- <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
+    <div class="share-container">
+    </div> -->
+    <!-- <button onclick="randomMeme()">RANDOM MEME</button> -->
     <div class="screen" onclick="closeModal()"></div>
     <header class="flex space-between">
         <h2 class="logo">memegen</h2>
         <div class="header-controlls">
             <a href="#" onclick="returnToGallery()">Gallery</a>
-            <a href="#">About</a>
             <a href="#" onclick="renderSavedMemes()">Saved</a>
+            <a href="#">About</a>
         </div>
     </header>
     <nav class="nav flex space-between">
@@ -27,7 +31,7 @@
         <div class="search-btns flex"></div>
     </nav>
     <section class="gallery"></section>
-    <section class="create-meme hidden flex space-around">
+    <section class="create-meme hidden flex center">
         <div class="canvas-container">
             <canvas id="my-canvas" height="500" width="500"></canvas>
         </div>
@@ -82,7 +86,7 @@
         <h2 class="logo">memegen</h2>
         <p>All rights reserved gazibo inc.</p>
     </footer>
-    <section class="saved-modal"></section>
+    <section class="saved-modal"><button class="close-modal" onclick="closeModal()">X</button><p>sorry, no memes saved!</p></section>
     
    
     <script src="js/storage-service.js"></script>

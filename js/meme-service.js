@@ -102,8 +102,9 @@ function onUp() {
 }
 function printMemes() {
     gMeme.forEach(meme => {
+        let width = gCtx.measureText(gMeme[gClicks].txt).width
         if (!meme.idx) {
-            let x = gElCanvas.width / 2 - 25
+            let x = gElCanvas.width / 2 - width / 2
             let y = 50;
             if (!meme.pos.x) {
                 meme.pos.x = x
@@ -112,7 +113,7 @@ function printMemes() {
 
             drawText(meme.txt, meme.pos.x, meme.pos.y, meme.size, meme.color, meme.fillColor, meme.font)
         } else if (meme.idx === 1) {
-            let x = gElCanvas.width / 2 - 25
+            let x = gElCanvas.width / 2 - width / 2
             let y = gElCanvas.height - 25
             if (!meme.pos.x) {
                 meme.pos.x = x
@@ -120,7 +121,7 @@ function printMemes() {
             }
             drawText(meme.txt, meme.pos.x, meme.pos.y, meme.size, meme.color, meme.fillColor, meme.font)
         } else {
-            let x = gElCanvas.width / 2 - 25
+            let x = gElCanvas.width / 2 - width / 2
             let y = gElCanvas.height / 2
             if (!meme.pos.x) {
                 meme.pos.x = x
@@ -132,7 +133,6 @@ function printMemes() {
 }
 function renderMeme() {
     let text = document.getElementById('meme-text')
-    console.log(isItem)
     if (isItem) {
         isItem.txt = text.value
         clearCanvas()
@@ -149,10 +149,6 @@ function renderMeme() {
     renderImg(gCurrImg)
     printMemes()
 }
-
-
-
-
 
 function changeFont(font) {
     let currMeme = gMeme[gClicks]
@@ -187,9 +183,10 @@ function alignRight() {
 }
 function alignCenter() {
     let currMeme = gMeme[gClicks]
+    let width = gCtx.measureText(gMeme[gClicks].txt).width
     if (isItem) currMeme = isItem
     isItem = false
-    currMeme.pos.x = gElCanvas.width / 2 - 25
+    currMeme.pos.x = gElCanvas.width / 2 - width / 2
     clearCanvas()
     renderImg(gCurrImg)
     printMemes()
@@ -265,7 +262,7 @@ function textUp() {
     printMemes()
 }
 
-function editTextByClick(){
+function editTextByClick() {
     clearCanvas()
     renderImg(gCurrImg)
     printMemes()
@@ -310,7 +307,7 @@ function deleteItem() {
     let currMeme = gMeme[gClicks]
     currMeme.txt = ''
     text.value = ''
-    if(isItem){
+    if (isItem) {
         isItem.txt = ''
         text.value = ''
     }
@@ -344,7 +341,7 @@ function deleteItem() {
 }
 function addLine() {
     let text = document.getElementById('meme-text')
-    console.log(gMeme[gClicks].idx)
+    // console.log(gMeme[gClicks].idx)
     if (!text.value) return
     if (isItem) {
         gClicks = gMeme.length
