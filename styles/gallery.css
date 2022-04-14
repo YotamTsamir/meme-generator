@@ -1,11 +1,16 @@
 .gallery{
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    /* grid-template-rows: 1fr 1fr 1fr 1fr; */
     grid-gap: 15px;
 }
 img{
-    height: 100%;
+   max-height: 224px;
     width: 100%;
     object-fit: cover;
+}
+.saved-img{
+    height: 200px;
+    width: 200px;
+    margin: 15px;
 }

@@ -7,20 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles/main.css">
+    <script src="https://kit.fontawesome.com/ec5fbb25e8.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
+    <div class="screen" onclick="closeModal()"></div>
     <header class="flex space-between">
         <h2 class="logo">memegen</h2>
         <div class="header-controlls">
             <a href="#" onclick="returnToGallery()">Gallery</a>
             <a href="#">About</a>
+            <a href="#" onclick="renderSavedMemes()">Saved</a>
         </div>
     </header>
-    <nav>
+    <nav class="nav flex space-between">
         <form onsubmit="renderImagesByKeywords()">
             <input type="text" id="input-text" name="" placeholder="Enter keyword search">
         </form>
+        <div class="search-btns flex"></div>
     </nav>
     <section class="gallery"></section>
     <section class="create-meme hidden flex space-around">
@@ -31,32 +35,45 @@
             <form oninput="renderMeme()">
                 <input type="text" id="meme-text" placeholder="enter memeness" autocomplete="off">
             </form>
-            <div class="buttons">
-                <div class="arrow-btns">
-                    <button onclick="textUp()" class="arrow up-arrow">↑</button>
-                    <button onclick="textLeft()" class="arrow left-arrow">←</button>
-                    <button onclick="textRight()" class="arrow right-arrow">→</button>
-                    <button onclick="textDown()" class="arrow down-arrow">↓</button>
+            <div class="buttons flex-col">
+                
+                <div class="move-and-add-lines flex center">
+                    <button onclick="addLine()" class="arrow down-arrow"><img src="images/add-line.png" class="btn-img"></button>
+                    <button onclick="editText()"><img class="btn-img" src="images/siwtch-lines.png"></button>
+                    <button onclick="deleteItem()"><img src="images/trash.png" class="btn-img"></button>
                 </div>
-                <div class="move-and-add-lines">
-                    <button onclick="addLine()" class="arrow down-arrow">+</button>
-                    <button onclick="editText()">↑↓</button>
+                <div class="set-align flex center">
+                    <button onclick="fontUp()"><img src="images/font-up.png" class="btn-img"></button>
+                    <button onclick="fontDown()"><img src="images/font-down.png" class="btn-img"></button>
+                    <button onclick="alignLeft()"><img src="images/align-left.png"class="btn-img"></button>
+                    <button onclick="alignCenter()"><img src="images/align-center.png"class="btn-img"></button>
+                    <button onclick="alignRight()"><img src="images/align-right.png"class="btn-img"></button>
                 </div>
-                <div class="set-align">
-                    <button onclick="alignLeft()">«</button>
-                    <button onclick="alignCenter()">=</button>
-                    <button onclick="alignRight()">»</button>
-                </div>
-                <div class="font-control">
-                    <button>Font color:<input class="font-color-val" oninput="changeColorFont()" type="color"></button>
-                    <button>Fill color:<input class="fill-color-val" oninput="changeColorFill()" type="color"></button>
-                    <button onclick="fontUp()">Font++</button>
-                    <button onclick="fontDown()">Font--</button>
+                <div class="font-control flex center">
+                    <button class="color" onclick="renderColor()">Font Color: <input class="font-color-val" oninput="changeColorFont()" type="color"></button>
+                    <button class="color">Fill Color: <input class="fill-color-val" oninput="changeColorFill()" type="color" ></button>
+                   
                     <select onclick="changeFont(this.value)" class="font-style" name="font">
                         <option value="impact" selected>impact</option>
                         <option value="courier">courier</option>
                         <option value="ariel">ariel</option>
                     </select>
+                </div>
+                <div class="arrow-btns flex center">
+                    <div class="arrow-order">
+                        <button onclick="textUp()" class="arrow up-arrow">↑</button>
+                        <div class="left-right">
+                            <button onclick="textLeft()" class="arrow left-arrow">←</button>
+                            <button onclick="textDown()" class="arrow down-arrow">↓</button>
+                            <button onclick="textRight()" class="arrow right-arrow">→</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="links">
+                    <a class="bot-links" href="#" onclick="downloadCanvas(this)" download="canvas">Download</a>
+                    <a class="bot-links" href="#" class="upload" onclick="uploadImg(this)">Upload if you wante to Share!</a>
+                    <a  class="bot-links share" href="#" >Share</a>
+                    <a  class="bot-links save" onclick="saveCanvasToLocalStorage()">Save</a>
                 </div>
             </div>
         </div>
@@ -65,7 +82,12 @@
         <h2 class="logo">memegen</h2>
         <p>All rights reserved gazibo inc.</p>
     </footer>
-
+    <section class="saved-modal"></section>
+    
+   
+    <script src="js/storage-service.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/upload.js"></script>
     <script src="js/images-controller.js"></script>
     <script src="js/images-service.js"></script>
     <script src="js/canvas-controller.js"></script>

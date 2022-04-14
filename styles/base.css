@@ -3,4 +3,42 @@
 }
 body{
     margin: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+a{
+    margin-right: 8px;
+}
+
+.bot-links{
+    color: #ffffff;
+    /* border: 1px solid black; */
+    border-radius: 5px;
+    padding: 3px;
+    background-color: rgb(255, 166, 0);
+}
+.bot-links:active{
+    background-color: rgb(170, 110, 0);
+}
+button{
+    border-style: none;
+    background-color: rgb(255, 255, 255);
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 5px;
+    margin: 8px;
+}
+button:active{
+    background-color: rgb(161, 161, 161);
+}
+.button-image{
+    object-fit: contain;
+}
+.btn-img{
+        width: 25px;
+        height: 25px;
+        object-fit: contain;
+}
+.logo{
+    color: whitesmoke;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

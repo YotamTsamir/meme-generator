@@ -1,11 +1,76 @@
-#meme-text{
+#meme-text {
+    border: none;
+    border-radius: 5px;
     margin: 15px;
     height: 1.5rem;
     width: 18rem;
 }
-.meme-controls{
+
+.canvas-container {
+    margin-top: 20px;
+    width: 500px;
+    height: 500px;
+}
+
+.meme-controls {
+    margin-top: 20px;
     background-color: rgb(213, 213, 213);
     height: 500px;
     width: 500px;
     align-items: center;
+}
+.font-style{
+    height: 20px;
+    border-radius: 5px;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+.buttons {
+    gap: 20px;
+}
+
+.left-right {
+    margin-left: -45px;
+}
+
+/* .font-color-val {
+    margin-bottom: 100px;
+    height: 10px;
+    width: 40px
+} */
+.color{
+    width: 8.5rem;
+}
+.color:active{
+    background-color: white;
+}
+.up-arrow{
+    margin-left: 22px;
+}
+.saved-modal{
+    top: 50%;
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+    transform: translate(-50%, -50%);
+    left: 50%;
+    border-radius: 15px;
+    position: fixed;
+    text-align: center;
+    background-color: rgb(183, 183, 183);
+    width: 90vw;
+    height: 90vh;
+    display: none;
+    z-index: 10;
+    opacity: 1;
+}
+.close-modal{
+    grid-column-start: 1;
+    grid-row-start: 1;
+}
+.screen{
+    position:fixed;
+    inset: 0;
+    background-color: black;
+    z-index: 5;
+    display: none;
+    opacity: 0.5;
 }
