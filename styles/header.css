@@ -21,3 +21,8 @@ a{
 .logo{
     margin-left: 15px;
 }
+.feeling-lucky{
+    background-color: #ff7f00;
+    width: 6rem;
+    border: solid;
+}

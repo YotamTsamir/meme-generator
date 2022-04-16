@@ -2,7 +2,7 @@
 let gElCanvas = document.getElementById('my-canvas')
 let gCtx = gElCanvas.getContext('2d')
 let gCurrImg;
-let memes = []
+let memes = [];
 const STORAGE_KEY = 'memesDb'
 
 
@@ -26,7 +26,6 @@ function addTouchListeners() {
 
 
 function renderImg(img) {
-  
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
 }
 
@@ -34,30 +33,6 @@ function resizeCanvas() {
     var elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
     gElCanvas.height = elContainer.offsetHeight
-}
-function onImgInput(ev) {
-    loadImageFromInput(ev, renderImg)
-}
-function loadImageFromInput(ev, onImageReady) {
-    document.querySelector('.share-container').innerHTML = ''
-    var reader = new FileReader()
-    console.log('asd')
-    reader.onload = (event) => {
-        console.log('onload');
-        var img = new Image()
-        // Render on canvas
-        img.src = event.target.result
-        img.onload = onImageReady.bind(null, img)
-        console.log(img.src)
-        // gCurrImg = `<img onclick="onClickImg(this) id="img-20" src="${img.src}">`
-       
-        gImgs.push({id:20,url:`${img.src}`,keyWords:[]})
-        gCurrImg = gImgs[gImgs.length-1]
-    }
-    console.log('after');
-    reader.readAsDataURL(ev.target.files[0])
-    console.log(gImgs)
-    // renderImages()
 }
 function drawImgFromlocal(source) {
     var img = new Image()
@@ -82,18 +57,33 @@ function returnToGallery() {
     gClicks = 0;
     if (gallery.classList.contains('hidden')) {
         toggleCanvasSeen()
+        deleteBtnImg()
+        toggleRandomBtn()
         toggleGalleryHidden()
         renderImages()
         toggleNavSeen()
     } else renderImages()
 }
 function onClickImg(source) {
+    toggleRandomBtn()
     toggleGalleryHidden()
     toggleNavSeen()
     toggleCanvasSeen()
+    resizeCanvas()
+    clearCanvas()
     renderImg(source)
     console.log(source)
-    return gCurrImg = source
+    gCurrImg = source
+    return gCurrImg
+}
+function deleteBtnImg() {
+    let btnImage = document.querySelector('.random-img')
+    console.log(btnImage)
+    btnImage.src = ""
+}
+function toggleRandomBtn() {
+    let btn = document.querySelector('.feeling-lucky')
+    btn.classList.toggle('hidden')
 }
 function downloadCanvas(elLink) {
     clearCanvas()
@@ -109,8 +99,12 @@ function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
     gElCanvas.height = elContainer.offsetHeight
+    // gElCanvas.height = elContainer.style.height
+    // gElCanvas.width = elContainer.style.width
 }
 function saveCanvasToLocalStorage() {
+    memes = loadFromStorage(STORAGE_KEY)
+    if(!memes) memes = []
     clearCanvas()
     renderImg(gCurrImg)
     printMemes()
@@ -121,19 +115,25 @@ function saveCanvasToLocalStorage() {
     saveToStorage(STORAGE_KEY, memes)
 }
 function renderSavedMemes() {
-    loadFromStorage(STORAGE_KEY)
-    if (!memes) return
+    let savedMemes = loadFromStorage(STORAGE_KEY);
     let modal = document.querySelector('.saved-modal')
     let screen = document.querySelector('.screen')
     let strHTML = ''
     let savedModal = document.querySelector('.saved-modal')
-    console.log(memes)
-    memes.forEach(meme => strHTML += `<img class="saved-img" src=${meme}>`)
+    if(!savedMemes){
+     strHTML = '<h2>Sorry no memes saved!</h2>'
+     savedModal.innerHTML = strHTML
+     modal.style.display = 'grid'
+     screen.style.display = 'block'
+     return   
+    }
+    savedMemes.forEach(meme => strHTML += `<img class="saved-img" src=${meme}>`)
     strHTML += '<button class="close-modal" onclick="closeModal()">X</button>'
     savedModal.innerHTML = strHTML
-
     modal.style.display = 'grid'
     screen.style.display = 'block'
+    // savedModal.innerHTML = `<img class="saved-img" src=${data}>`
+    // memes.forEach(meme => strHTML+=``)
 }
 function closeModal() {
     let modal = document.querySelector('.saved-modal')

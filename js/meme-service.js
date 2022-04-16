@@ -27,7 +27,6 @@ function addListeners() {
     addMouseListeners()
     addTouchListeners()
     window.addEventListener('resize', () => {
-        console.log('here')
         resizeCanvas()
         clearCanvas()
         renderImg(gCurrImg)
@@ -86,13 +85,8 @@ function onDown(ev) {
 function onMove(ev) {
     if (!clickDown) return
     const pos = getEvPos(ev)
-    // const dx = pos.x - gStartPos.x
-    // const dy = pos.y - gStartPos.y
     isItem.pos.x = pos.x
     isItem.pos.y = pos.y
-    // moveItem(dx, dy)
-    // gStartPos = pos
-    // renderCanvas()
     clearCanvas()
     renderImg(gCurrImg)
     printMemes()
@@ -102,9 +96,8 @@ function onUp() {
 }
 function printMemes() {
     gMeme.forEach(meme => {
-        let width = gCtx.measureText(gMeme[gClicks].txt).width
         if (!meme.idx) {
-            let x = gElCanvas.width / 2 - width / 2
+            let x = gElCanvas.width / 2 - 25
             let y = 50;
             if (!meme.pos.x) {
                 meme.pos.x = x
@@ -113,7 +106,7 @@ function printMemes() {
 
             drawText(meme.txt, meme.pos.x, meme.pos.y, meme.size, meme.color, meme.fillColor, meme.font)
         } else if (meme.idx === 1) {
-            let x = gElCanvas.width / 2 - width / 2
+            let x = gElCanvas.width / 2 - 25
             let y = gElCanvas.height - 25
             if (!meme.pos.x) {
                 meme.pos.x = x
@@ -121,7 +114,7 @@ function printMemes() {
             }
             drawText(meme.txt, meme.pos.x, meme.pos.y, meme.size, meme.color, meme.fillColor, meme.font)
         } else {
-            let x = gElCanvas.width / 2 - width / 2
+            let x = gElCanvas.width / 2 - 25
             let y = gElCanvas.height / 2
             if (!meme.pos.x) {
                 meme.pos.x = x
@@ -133,6 +126,7 @@ function printMemes() {
 }
 function renderMeme() {
     let text = document.getElementById('meme-text')
+    console.log(isItem)
     if (isItem) {
         isItem.txt = text.value
         clearCanvas()
@@ -149,6 +143,10 @@ function renderMeme() {
     renderImg(gCurrImg)
     printMemes()
 }
+
+
+
+
 
 function changeFont(font) {
     let currMeme = gMeme[gClicks]
@@ -183,10 +181,9 @@ function alignRight() {
 }
 function alignCenter() {
     let currMeme = gMeme[gClicks]
-    let width = gCtx.measureText(gMeme[gClicks].txt).width
     if (isItem) currMeme = isItem
     isItem = false
-    currMeme.pos.x = gElCanvas.width / 2 - width / 2
+    currMeme.pos.x = gElCanvas.width / 2 - 25
     clearCanvas()
     renderImg(gCurrImg)
     printMemes()
@@ -256,13 +253,11 @@ function textUp() {
     let currMeme = gMeme[gClicks]
     currMeme.pos.y -= 20
     clearCanvas()
-    // let width = gCtx.measureText(currMeme.txt).width
     renderImg(gCurrImg)
-    // drawLine(currMeme.pos.x,currMeme.pos.y+5,currMeme.pos.x+width,currMeme.pos.y+5)
     printMemes()
 }
 
-function editTextByClick() {
+function editTextByClick(){
     clearCanvas()
     renderImg(gCurrImg)
     printMemes()
@@ -307,7 +302,7 @@ function deleteItem() {
     let currMeme = gMeme[gClicks]
     currMeme.txt = ''
     text.value = ''
-    if (isItem) {
+    if(isItem){
         isItem.txt = ''
         text.value = ''
     }
@@ -341,7 +336,7 @@ function deleteItem() {
 }
 function addLine() {
     let text = document.getElementById('meme-text')
-    // console.log(gMeme[gClicks].idx)
+    console.log(gMeme[gClicks].idx)
     if (!text.value) return
     if (isItem) {
         gClicks = gMeme.length
@@ -388,10 +383,5 @@ function drawLine(x, y, xEnd, yEnd) {
     gCtx.strokeStyle = 'black';
     gCtx.stroke();
 }
-// function drawLine(x, y, xEnd = 250, yEnd = 250) {
-//     gCtx.lineWidth = 2;
-//     gCtx.moveTo(x, y);
-//     gCtx.lineTo(xEnd, yEnd);
-//     gCtx.strokeStyle = 'green';
-//     gCtx.stroke();
-// }
+
+

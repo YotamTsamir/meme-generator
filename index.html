@@ -11,27 +11,33 @@
 </head>
 
 <body>
-    <!-- <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
-    <div class="share-container">
-    </div> -->
-    <!-- <button onclick="randomMeme()">RANDOM MEME</button> -->
     <div class="screen" onclick="closeModal()"></div>
     <header class="flex space-between">
         <h2 class="logo">memegen</h2>
         <div class="header-controlls">
             <a href="#" onclick="returnToGallery()">Gallery</a>
-            <a href="#" onclick="renderSavedMemes()">Saved</a>
             <a href="#">About</a>
+            <a href="#" onclick="renderSavedMemes()">Saved</a>
         </div>
     </header>
     <nav class="nav flex space-between">
+
         <form onsubmit="renderImagesByKeywords()">
             <input type="text" id="input-text" name="" placeholder="Enter keyword search">
+            <datalist id="browsers">
+                <option value="dog">
+                <option value="baby">
+                <option value="funny">
+                <option value="Opera">
+                <option value="Safari">
+              </datalist>
         </form>
         <div class="search-btns flex"></div>
     </nav>
-    <section class="gallery"></section>
-    <section class="create-meme hidden flex center">
+    <button src="" class="feeling-lucky" onclick="getRandomMeme(this)">Feeling lucky? <img class="random-img" src=""></button>
+    <section class="gallery">
+    </section>
+    <section class="create-meme hidden flex space-around">
         <div class="canvas-container">
             <canvas id="my-canvas" height="500" width="500"></canvas>
         </div>
@@ -75,7 +81,7 @@
                 </div>
                 <div class="links">
                     <a class="bot-links" href="#" onclick="downloadCanvas(this)" download="canvas">Download</a>
-                    <a class="bot-links" href="#" class="upload" onclick="uploadImg(this)">Upload if you wante to Share!</a>
+                    <a class="bot-links" href="#" class="upload" onclick="uploadImg(this)">Upload if you want to Share!</a>
                     <a  class="bot-links share" href="#" >Share</a>
                     <a  class="bot-links save" onclick="saveCanvasToLocalStorage()">Save</a>
                 </div>
@@ -86,9 +92,10 @@
         <h2 class="logo">memegen</h2>
         <p>All rights reserved gazibo inc.</p>
     </footer>
-    <section class="saved-modal"><button class="close-modal" onclick="closeModal()">X</button><p>sorry, no memes saved!</p></section>
+    <section class="saved-modal"></section>
     
    
+    <script src="js/utils.js"></script>
     <script src="js/storage-service.js"></script>
     <script src="js/nav.js"></script>
     <script src="js/upload.js"></script>

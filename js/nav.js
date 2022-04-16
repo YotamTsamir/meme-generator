@@ -24,9 +24,9 @@ function renderSearchBtns() {
 }
 
 function searchAndGrow(keyWord) {
-   let currKey = document.getElementById(`${keyWord.id}`)
-   KEY_WORDS[keyWord.id-1].size += 1
-    currKey.style.fontSize = `${KEY_WORDS[keyWord.id-1].size}px`
+    let currKey = document.getElementById(`${keyWord.id}`)
+    KEY_WORDS[keyWord.id - 1].size += 1
+    currKey.style.fontSize = `${KEY_WORDS[keyWord.id - 1].size}px`
     let currKeyWord = currKey.innerText
     console.log(currKeyWord)
     let images = getImages()
@@ -38,4 +38,26 @@ function searchAndGrow(keyWord) {
         let imageHolder = document.querySelector('.gallery')
         imageHolder.innerHTML = strHTML
     })
+}
+let randomMemesTop = ['I like my Puki','i like my Shuki','i like my children']
+let randomMemesBot = ['with some salt','with a hint of pepper','under the gazibo']
+function getRandomMeme() {
+    let images = getImages()
+    let image = images[getRandomIntInclusive(0, 18)]
+    let randomImage = document.querySelector('.random-img')
+    randomImage.src = `images/${image.url}`
+    createMeme(`${randomMemesTop[getRandomIntInclusive(0,2)]}`,'14px','left')
+    createMeme(`${randomMemesBot[getRandomIntInclusive(0,2)]}`,'14px','left')
+    gMeme[0].idx = 0
+    gMeme[1].idx = 1
+    console.log(gMeme[0].idx)
+    onClickImg(randomImage)
+    printMemes()
+    alignAllLeft()
+}
+function alignAllLeft(){
+   gMeme.forEach(meme => meme.pos.x = 10)
+    clearCanvas()
+    renderImg(gCurrImg)
+    printMemes()
 }

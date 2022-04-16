@@ -5,9 +5,7 @@
     height: 1.5rem;
     width: 18rem;
 }
-.create-meme{
-    gap: 30px;
-}
+
 .canvas-container {
     margin-top: 20px;
     width: 500px;
@@ -16,7 +14,7 @@
 
 .meme-controls {
     margin-top: 20px;
-    background-color: #e3e3e3;
+    background-color: rgb(213, 213, 213);
     height: 500px;
     width: 500px;
     align-items: center;
@@ -35,6 +33,11 @@
     margin-left: -45px;
 }
 
+/* .font-color-val {
+    margin-bottom: 100px;
+    height: 10px;
+    width: 40px
+} */
 .color{
     width: 8.5rem;
 }
@@ -52,7 +55,6 @@
     border-radius: 15px;
     position: fixed;
     text-align: center;
-    gap: 6px;
     background-color: rgb(183, 183, 183);
     width: 90vw;
     height: 90vh;
