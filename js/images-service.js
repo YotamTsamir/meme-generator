@@ -8,7 +8,8 @@ function renderImages(){
     imageHolder.innerHTML = strHTML
 }
 
-function renderImagesByKeywords(){
+function renderImagesByKeywords(ev){
+ev.preventDefault()
     let keyWord = document.getElementById('input-text').value
     let images = getImages()
     let strHTML = ''
